@@ -11,25 +11,33 @@
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-        <body>
-    <header class="page-header">
-      <div class="container">
-          {% if user.is_authenticated %}
-              <a href="{% url 'post_new' %}" class="top-menu">
-                {% include './icons/file-earmark-plus.svg' %}
-              </a>
-          {% endif %}
-          <h1><a href="/">Django Girls Blog</a></h1>
-      </div>
-    </header>
-    <main class="container">
-        <div class="row">
-            <div class="col">
-            {% block content %}
-            {% endblock %}
+        
+        <header class="page-header">
+          <!--<div class="container">-->
+              {% if user.is_authenticated %}
+                  <a href="{% url 'post_new' %}" class="top-menu">
+                    {% include './icons/plus-square.svg' %}
+                  </a>
+                  <a href="{% url 'post_draft_list' %}" class="top-menu">
+                      {% include './icons/pencil-square.svg' %}
+                  </a>
+                  <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+              {% else %}
+                  <a href="{% url 'login' %}" class="top-menu">
+                      {% include './icons/person-circle.svg' %}
+                  </a>   
+              {% endif %}
+              <h1><a href="/">Django Girls Blog</a></h1>
+          <!--</div>-->
+        </header>
+        <main class="container">
+            <div class="row">
+                <div class="col">
+                {% block content %}
+                {% endblock %}
+                </div>
             </div>
-        </div>
-    </main>
-</body>
+        </main>
     </body>
+
 </html>

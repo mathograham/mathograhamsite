@@ -9,6 +9,7 @@
             <!--makes clickable link through django with name 'post_detail' and given primary key-->
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
         </article>
     {% endfor %}
 {% endblock %}
